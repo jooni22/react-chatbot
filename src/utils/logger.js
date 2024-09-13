@@ -1,25 +1,31 @@
-import winston from 'winston';
-import path from 'path';
-
-const logger = winston.createLogger({
-  level: 'info',
-  format: winston.format.combine(
-    winston.format.timestamp(),
-    winston.format.json()
-  ),
-  transports: [
-    new winston.transports.File({ filename: path.join(process.cwd(), 'debug.log') }),
-  ],
-});
-
-export const logApiRequest = (messages, config) => {
-  logger.info('API Request', { messages, config });
+// Prosta implementacja loggera dla przeglądarki
+const logger = {
+  info: (message, meta = {}) => {
+    console.log(`INFO: ${message}`, meta);
+  },
+  error: (message, error) => {
+    console.error(`ERROR: ${message}`, error);
+  },
+  warn: (message, meta = {}) => {
+    console.warn(`WARN: ${message}`, meta);
+  },
+  debug: (message, meta = {}) => {
+    console.debug(`DEBUG: ${message}`, meta);
+  },
 };
 
-export const logApiResponse = (response) => {
-  logger.info('API Response', { response });
+export const logInfo = (message, meta = {}) => {
+  logger.info(message, meta);
 };
 
-export const logApiError = (error) => {
-  logger.error('API Error', { error: error.message, stack: error.stack });
+export const logError = (message, error) => {
+  logger.error(message, { error: error.message, stack: error.stack });
+};
+
+export const logWarning = (message, meta = {}) => {
+  logger.warn(message, meta);
+};
+
+export const logDebug = (message, meta = {}) => {
+  logger.debug(message, meta);
 };

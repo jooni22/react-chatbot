@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { logInfo, logError } from '../utils/logger';
 import {
   MDBContainer,
   MDBRow,
@@ -36,8 +37,9 @@ export default function Chat() {
     try {
       const aiResponse = await sendMessageToAI([...messages, newMessage]);
       setMessages((prevMessages) => [...prevMessages, aiResponse]);
+      logInfo('Received AI response', { response: aiResponse });
     } catch (error) {
-      console.error("Error sending message:", error);
+      logError('Error sending message:', error);
       // Handle error (e.g., show error message to user)
     } finally {
       setIsLoading(false);
