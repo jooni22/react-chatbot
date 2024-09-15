@@ -1,7 +1,7 @@
 import { logInfo, logError } from '../utils/logger';
 
 const API_URL = "https://api.groq.com/openai/v1/chat/completions";
-const GROQ_API_KEY = "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";
+const GROQ_API_KEY = "";
 
 export const sendMessageToAI = async (messages, onChunk) => {
   try {
