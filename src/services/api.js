@@ -15,10 +15,10 @@ export const sendMessageToAI = async (messages, onChunk) => {
       },
       body: JSON.stringify({
         messages: [
-          { role: "system", content: "I'm the best ai" },
+          { role: "system", content: "Jesteś pomocnym asystentem i znasz dwa języki: polskim i angielskim." },
           ...messages,
         ],
-        model: "llama3-8b-8192",
+        model: "llama-3.1-8b-instant",
         temperature: 1,
         max_tokens: 1024,
         top_p: 1,
